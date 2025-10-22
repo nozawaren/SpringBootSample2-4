@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserApplicationService {
-	
+
 	@Autowired
 	private MessageSource messageSource;
-	
+
 	/**性別のMapを生成する */
 	public Map<String, Integer> getGenderMap(Locale locale){
 		Map<String, Integer> genderMap = new LinkedHashMap<>();

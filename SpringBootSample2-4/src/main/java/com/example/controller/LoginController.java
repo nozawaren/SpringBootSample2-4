@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class LoginController {
-	
+
 	//** ログイン画面を表示 */
 	@GetMapping("/login")
 	public String getLogin() {
