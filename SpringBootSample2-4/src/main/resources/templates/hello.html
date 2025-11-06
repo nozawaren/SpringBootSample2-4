@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- HTMLをブラウザ上で表示することができるようになる -->
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
@@ -6,12 +7,16 @@
 </head>
 <body>
 	<h1>Hello World</h1>
+	<!-- submit（ボタン）をクリックした際にformタグのaction内にて記載したパスにPOSTとして送ることができる -->
 	<form method="post" action="/hello">
+	<!-- input内の入力欄に記載された内容をtext1として定義する -->
 		入力：<input type="text" name="text1" />
 		<input type="submit" value="クリック" />
 	</form>
 	<br/>
+	<!-- methodにて送信する際にgetまたはpostかを決定する。actionにて送信先のパスを決定する -->
 	<form method="post" action="/hello/db">
+	<!-- input内の入力欄に記載された内容をtext2として定義する -->
 		従業員ID:<input type="text" name="text2" th:value="${text2_value}" />
 		<input type="submit" value="クリック" />
 	</form>
