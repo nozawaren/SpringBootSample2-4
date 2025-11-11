@@ -6,19 +6,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+//HTTPからのリクエストを受けられるようになる
 @Controller
 public class HelloController {
 
+	//インスタンスの生成を省略することができる
 	@Autowired
 	private HelloService service;
-
+	//()内にHTMLのパスを記載することで記載したHTMLパスからGETのリクエストを受けられるようになる
 	@GetMapping("/hello")
 	public String getHello() {
 		//hello.htmlに画面遷移
 		return "hello";
 	}
 
+	//()内にHTMLのパスを記載することで記載したHTMLパスからPOSTのリクエストを受けられるようになる
 	@PostMapping("/hello")
+	//@RequestParamはHTMLにて定義された名前と同じものを記載することでHTMLから値を受け取ることができる
 	public String PostRequest(@RequestParam("text1") String str, Model model) {
 		//画面から受け取った文字列をModelに登録
 		model.addAttribute("sample",str);
@@ -26,6 +30,8 @@ public class HelloController {
 		//response.htmlに遷移
 		return "hello/response";
 	}
+
+	//()内にHTMLのパスを記載することで記載したHTMLパスからPOSTのリクエストを受けられるようになる
 	@PostMapping("/hello/db")
 	public String postDbRequest(@RequestParam("text2") String id, Model model) {
 
