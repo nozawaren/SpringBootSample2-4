@@ -64,6 +64,7 @@
 		</div> 
 		<!-- 性別 --> 
 		<div class="form-group"> 
+			<!-- UserApplicationService.javaにてgenderMap.putした値をth:each="item : ${genderMap}"にて受け取り表示する -->
 			<div th:each="item : ${genderMap}" class="form-check-inline"> 
 				<!-- signupForm.java内のgenderの型として入力値を設定する -->
 				<input type="radio" class="form-check-input" th:value="${item.value}" th:field="*{gender}" th:errorclass="is-invalid"/> 

@@ -43,6 +43,7 @@ public class SignupForm {
 	@NotNull(groups = ValidGroup1.class)
 	private Date birthday;
 
+	//入力値が19文字以下・101以上の場合エラーとなる
 	//入力内容が20文字以上であることをチェックする
 	@Min(value = 20, groups = ValidGroup2.class)
 	//入力内容が100文字以下であることをチェックする
