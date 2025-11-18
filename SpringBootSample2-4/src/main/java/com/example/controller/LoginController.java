@@ -12,6 +12,7 @@ public class LoginController {
 	public String getLogin() {
 		return "login/login";
 	}
+	/** login.html内のactionタグに記載している/loginと連携してpostrequestを受け取り処理を行う */
 	/** ユーザー一覧画面にリダイレクト */
 	@PostMapping("/login")
 	public String postLogin() {
