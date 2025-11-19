@@ -1,8 +1,10 @@
 <!DOCTYPE html> 
+<!-- layout/layoutを設定することでlayout.htmlから参照できるようになる -->
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}"> 
 <head> 
 </head> 
 <body> 
+	<!-- layout.htmlのキー名と連携してlayout.htmlに組み込まれる -->
 	<nav layout:fragment="header" class="navbar navbar-inverse navbar-fixed-top navbar-dark bg-dark"> 
 		<div class="container-fluid"> 
 			<div class="navbar-header"> 
