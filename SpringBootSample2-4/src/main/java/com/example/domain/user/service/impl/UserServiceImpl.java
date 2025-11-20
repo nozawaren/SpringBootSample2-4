@@ -33,19 +33,23 @@ public class UserServiceImpl implements UserService{
 	}
 
 	/** ユーザー取得 */
+	//* UserService.javaのgetUsersをオーバーライドして内部処理にUserMapper.javaのfindManyを実行する */
 	@Override 
 	public List<MUser> getUsers(MUser user) { 
 		return mapper.findMany(user); 
 	}
 
 	/** ユーザー取得（1件） */
+	/** UserService.javaのgetUserOneをオーバーライドして内部処理にUserMapper.javaのfindOneを実行する */
 	@Override
 	public MUser getUserOne(String userId) {
 		return mapper.findOne(userId);
 	}
 	
 	/** ユーザー更新(1件) */ 
+	/** トランザクションを実装できる */
 	@Transactional
+	/** UserService.javaのupdateUserOneをオーバーライドして内部処理にUserMapper.javaのupdateOneを実行する */
 	@Override 
 	public void updateUserOne(String userId, String password, String userName) { 
 		mapper.updateOne(userId, password, userName); 
@@ -59,6 +63,7 @@ public class UserServiceImpl implements UserService{
 	} 
 	
 	/** ユーザー削除(1件) */ 
+	/** UserService.javaのdeleteUserOneをオーバーライドして内部処理にUserMapper.javaのdeleteOneを実行する */
 	@Override 
 	public void deleteUserOne(String userId) { 
 		int count = mapper.deleteOne(userId); 

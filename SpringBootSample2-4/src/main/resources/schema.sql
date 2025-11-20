@@ -5,6 +5,7 @@ age INT
 ); 
 
 /* ユーザーマスタ */
+/* m_userテーブルを作成する（user_idをキー項目とする */
 CREATE TABLE IF NOT EXISTS m_user(
    user_id VARCHAR(50) PRIMARY KEY
  , password VARCHAR(100)
@@ -17,12 +18,14 @@ CREATE TABLE IF NOT EXISTS m_user(
 );
 
 /* 部署マスタ */
+/* m_departmentテーブルを作成する（departmentをキー項目とする） */
 CREATE TABLE IF NOT EXISTS m_department (
    department_id INT PRIMARY KEY
  , department_name VARCHAR(50)
 );
 
 /* 給料テーブル */
+/* salaryテーブルを作成する（user_idとyear_monthをキー項目とする）*/
 CREATE TABLE IF NOT EXISTS t_salary (
    user_id VARCHAR(50)
  , year_month VARCHAR(50)

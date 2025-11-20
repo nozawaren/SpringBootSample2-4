@@ -90,12 +90,14 @@
 			<groupId>nz.net.ultraq.thymeleaf</groupId>
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 		</dependency>
+		<!-- MyBatisを使用したコードを使用できるようになる -->
 		<!-- MyBatis -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>2.1.4</version>
 		</dependency>
+		<!-- Model Mapperを使用したコードを使用できるようになる -->
 		<!-- Model Mapper -->
 		<dependency>
 			<groupId>org.modelmapper.extensions</groupId>

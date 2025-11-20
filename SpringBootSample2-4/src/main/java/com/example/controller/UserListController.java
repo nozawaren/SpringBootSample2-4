@@ -19,13 +19,19 @@ import com.example.form.UserListForm;
 @RequestMapping("/user")
 public class UserListController {
 
+	//UserService userService = new UserServiceのインスタンスの生成を省略することができる
+	//また、同名インターフェースを別クラスで作成した際にインスタンスの切替が簡単になる
 	@Autowired
 	private UserService userService;
-	
+
+	//ModelMapper modelMapper = new ModelMapperのインスタンスの生成を省略することができる
+	//また、同名インターフェースを別クラスで作成した際にインスタンスの切替が簡単になる
 	@Autowired 
 	private ModelMapper modelMapper;
 
 	/** ユーザー一覧画面を表示 */
+	/** list.htmlにてactionが/user/updateの呼び出しが発生した際にユーザ検索処理を実行しユーザ一覧画面を表示する */
+	/** getリクエストの場合、userIdの入力がないため全件検索が行われる */
 	@GetMapping("/list")
 	public String getUserList(@ModelAttribute UserListForm form, Model model) {
 		// formをMUserクラスに変換 
@@ -42,6 +48,8 @@ public class UserListController {
 	}
 	
 	/** ユーザー検索処理 */ 
+	/** list.htmlにてactionが/user/updateの呼び出しが発生した際にユーザ検索処理を実行しユーザ一覧画面を表示する */
+	/** postリクエストの場合、userIdの入力がされている場合があるため対象のユーザーのみの検索が行われる */
 	@PostMapping("/list") 
 	public String postUserList(@ModelAttribute UserListForm form, Model model) { 
 		// formをMUserクラスに変換 

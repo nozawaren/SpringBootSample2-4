@@ -11,6 +11,7 @@
 			<h1 class="h2">ユーザー詳細</h1> 
 		</div> 
 		<form id="user-detail-form" method="post" th:action="@{/user/detail}" class="form-signup" th:object="${userDetailForm}"> 
+				<!-- UserDetaiForm.java内のuserIdの型として入力値を設定する -->
 			<input type="hidden" th:field="*{userId}" />
 			<!-- ユーザー詳細情報 --> 
 			<table class="table table-striped table-bordered table-hover"> 
@@ -46,6 +47,7 @@
 					<tr> 
 						<th>部署名</th> 
 						<td> 
+							<!-- departmentがnullでない場合、departmentNameを表示する -->
 							<span th:if="*{department != null}" th:text="*{department.departmentName}"> </span> 
 						</td> 
 					</tr> 
@@ -54,15 +56,18 @@
 			<!-- ボタンエリア --> 
 			<div class="text-center"> 
 				<!-- 削除ボタン --> 
+				<!-- UserDetailController.javaのparamsがdeleteの処理を呼び出すボタンを作成する -->
 				<button class="btn btn-danger" type="submit" name="delete"> 
 					削除 
 				</button> 
 				<!-- 更新ボタン --> 
+				<!-- UserDetailController.javaのparamsがupdateの処理を呼び出すボタンを作成する -->
 				<button class="btn btn-primary" type="submit" name="update"> 
 					更新 
 				</button> 
 			</div>
 			<!-- 給料情報 --> 
+			<!-- salaryListがnull以外かつサイズが0より大きい場合htmlを表示する -->
 			<th:block th:if="*{salaryList != null and salaryList.size() > 0}"> 
 				<div class="header border-bottom"> 
 					<h1 class="h2">給料</h1> 
@@ -75,8 +80,11 @@
 						</tr> 
 					</thead> 
 					<tbody> 
+						<!-- salaryListをitemとしてtrタグないで使用する -->
 						<tr th:each="item: *{salaryList}"> 
-							<td th:text="${item.yearMonth}"></td> 
+							<!-- yearMonthを表示する -->
+							<td th:text="${item.yearMonth}"></td>
+							<!-- 数値型でitem.salaryを3桁ごとにコンマを追加して表示をする --> 
 							<td th:text="${#numbers.formatInteger(item.salary, 3, 'COMMA')}"> </td> 
 						</tr> 
 					</tbody> 

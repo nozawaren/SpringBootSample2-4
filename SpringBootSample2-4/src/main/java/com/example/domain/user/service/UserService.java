@@ -10,15 +10,19 @@ public interface UserService {
 	public void signup(MUser user);
 
 	/** ユーザー取得 */ 
+	/** getUsersクラスを定義する */
 	public List<MUser> getUsers(MUser user);
 
 	/** ユーザー取得（１件） */
+	/** getUserOneクラスを定義する */
 	public MUser getUserOne(String userId);
 	
 	/** ユーザー更新(1件) */ 
+	/** updateUserOneクラスを定義する */
 	public void updateUserOne(String userId, String password, String userName); 
 	
 	/** ユーザー削除(1件) */ 
+	/** deleteUserOneクラスを定義する */
 	public void deleteUserOne(String userId);
 	
 	/** ログインユーザー情報取得 */ 
