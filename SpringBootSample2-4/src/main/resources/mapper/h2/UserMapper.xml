@@ -2,10 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- Mapper と xmlのマッピング -->
+<!-- 使用するインターフェース名までのパスを指定する -->
 <mapper namespace="com.example.repository.UserMapper">
 
 <!-- マッピング定義（ユーザー） -->
+<!-- SQLの結果をid=userとしてマッピングする -->
 <resultMap type="com.example.domain.user.model.MUser" id="user"> 
+<!-- columnはSQLの結果・propertyはjavaファイル内で使用する名称を指定する -->
+<!-- idタグ内のuser_idはユニークキーとしてSQLの結果に複数ある場合は1件とする -->
 <id column="user_id" property="userId" /> 
 	<result column="password" property="password" /> 
 	<result column="user_name" property="userName" /> 
@@ -19,19 +23,26 @@
 </resultMap>
 
 <!-- マッピング定義(部署) --> 
+<!-- SQLの結果をid=departmentとしてマッピングする -->
 <resultMap type="com.example.domain.user.model.Department" id="department"> 
+<!-- columnはSQLの結果・propertyはjavaファイル内で使用する名称を指定する -->
+<!-- idタグ内のdepartment_idはユニークキーとしてSQLの結果に複数ある場合は1件とする -->
 	<id column="department_id" property="departmentId" /> 
 	<result column="department_name" property="departmentName" /> 
 </resultMap>
 
 <!-- マッピング定義(給料) --> 
+<!-- SQLの結果をid=salaryとしてマッピングする -->
 <resultMap type="com.example.domain.user.model.Salary" id="salary"> 
+<!-- columnはSQLの結果・propertyはjavaファイル内で使用する名称を指定する -->
+<!-- idタグ内のuser_idはユニークキーとしてSQLの結果に複数ある場合は1件とする -->
 	<id column="user_id" property="userId" /> 
 	<id column="year_month" property="yearMonth" /> 
 	<result column="salary" property="salary" /> 
 </resultMap>
 
 <!-- ユーザー１件登録 -->
+<!-- UserMapper.javaにてinsertOneが定義された際にidと連携してSQLが作成される -->
 <insert id="insertOne">
 	insert into m_user(
 	   user_id
@@ -44,6 +55,7 @@
 	 , role
 	)
 	values(
+	<!-- MUser.javaにて定義したデータと同名項目を設定しSQLを作成する -->
 	   #{userId}
 	 , #{password}
 	 , #{userName}
@@ -56,15 +68,18 @@
 </insert>
 
 <!-- ユーザー複数件取得 --> 
+<!-- UserMapper.javaからidのfindManyと連携してm_userテーブルのデータを全権取得する -->
 <select id="findMany" resultType="MUser"> 
 	select 
 	* 
 	from 
 	m_user 
 	<where> 
+		<!-- 引数のuserIdがnullでない場合where句を有効にする -->
 		<if test="userId != null"> 
 			user_id like '%' || #{userId} || '%' 
 		</if> 
+		<!-- 引数のuserNameがnullでない場合where句を有効にする -->
 		<if test="userName != null"> 
 			and user_name like '%' || #{userName} || '%' 
 		</if> 
@@ -72,6 +87,8 @@
 </select>
 
 <!-- ユーザー1件検索 --> 
+<!-- SQLの結果をidがuserのresultMapタグの内容を適用する -->
+<!-- UserMapper.javaからidのfindOneと連携してm_userテーブルとm_department・t_salaryを結合して引数のuserIdのデータをuserIdの重複なしで取得する -->
 <select id="findOne" resultMap="user"> 
 	select 
 		  m_user.user_id 
@@ -93,6 +110,7 @@
 </select>
 
 <!-- ユーザー1件更新 --> 
+<!-- UserMapper.javaからidのupdateOneと連携してm_userテーブルを引数の値に更新する -->
 <update id="updateOne"> 
 	update 
 		m_user 
@@ -104,6 +122,7 @@
 </update> 
 
 <!-- ユーザー1件削除 --> 
+<!-- UserMapper.javaからidのdeleteOneと連携してm_userテーブルを引数と同じuser_idのレコードを削除する -->
 <delete id="deleteOne"> 
 	delete 
 		from m_user 

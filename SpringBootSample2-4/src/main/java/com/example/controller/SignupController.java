@@ -34,11 +34,15 @@ public class SignupController {
 
 	@Autowired
 	private UserApplicationService userApplicationService;
-
+	
+	//インスタンスの生成を省略することができる
+	//また、同名インターフェースを別クラスで作成した際にインスタンスの切替が簡単になる
 	@Autowired
 	private UserService userService;
 
 	@Autowired
+	//インスタンスの生成を省略することができる
+	//また、同名インターフェースを別クラスで作成した際にインスタンスの切替が簡単になる
 	private ModelMapper modelMapper;
 
 	/** ユーザー登録画面を表示 */

@@ -12,17 +12,21 @@
 		</div> 
 		<!-- 検索 --> 
 		<div class="mb-4"> 
+			<!-- UserListContorller.javaのマッピングが/user/listの処理にpostリクエストを送信する -->
+			<!-- objectにてformタグ内で使用するformのファイルを指定する -->
 			<form id="user-search-form" method="post" th:action="@{/user/list}" class="form-inline" th:object="${userListForm}"> 
 				<div class="form-group" > 
 					<label for="userId" class="mr-2">
 						ユーザーID
 					</label> 
+					<!-- userListForm.java内のuserIdの型として入力値を設定する -->
 					<input type="text" class="form-control" th:field="*{userId}"/> 
 				</div> 
 				<div class="form-group mx-sm-3" > 
 					<label for="userName" class="mr-2">
 						ユーザー名
 					</label> 
+					<!-- userListForm.java内のuserNameの型として入力値を設定する -->
 					<input type="text" class="form-control" th:field="*{userName}"/> 
 				</div> 
 				<button class="btn btn-primary" type="submit"> 
@@ -44,13 +48,20 @@
 					</tr> 
 				</thead> 
 				<tbody> 
+					<!-- UserListController.javaにてモデルに登録されたuserListをitemとしてtrタグ内で使用できるようになる -->
 					<tr th:each="item: ${userList}"> 
+						<!-- itemリストのキャメルケースとされたuserIdを表示する -->
 						<td th:text="${item.userId}"></td> 
+						<!-- itemリストのキャメルケースとされたuserNameを表示する -->
 						<td th:text="${item.userName}"></td> 
+						<!-- itemリストのキャメルケースとされたbirthdayをYYYY/MM/dd型で表示する -->
 						<td th:text="${#dates.format(item.birthday, 'YYYY/MM/dd')}"></td> 
+						<!-- itemリストのキャメルケースとされたuserNameを表示する -->
 						<td th:text="${item.age}"></td> 
+						<!-- itemリストのキャメルケースとされたgenderが1の場合、「男性」それ以外の場合、「女性」を表示する -->
 						<td th:text="${item.gender == 1} ? '男性': '女性'"></td> 
 						<td>
+							<!-- javaクラスを呼び出す際にuserIdを動的に変更されるURLを作成する -->
 							<a class="btn btn-primary" th:href="@{'/user/detail/' + ${item.userId}}">
 								詳細
 							</a>
