@@ -5,7 +5,9 @@
 	<title>Error</title> 
 </head> 
 <body> 
+	<!--エラー発生時に遷移し${status}でエラーコード、${error}でエラー内容を表示する-->
 	<h1 th:text="${status} + ' ' + ${error}"></h1> 
+	<!--${message}でエラーメッセージを表示する -->
 	<p th:text="${message}"></p> 
 	<p>ログイン画面に戻ってください</p> 
 	<form method="post" th:action="@{/logout}"> 

@@ -85,6 +85,7 @@ public class SignupController {
 	}
 	
 	/** データベース関連の例外処理 */ 
+	/** DataAccessExceptionにてデータベース処理にて例外が発生した際の処理を実装する */
 	@ExceptionHandler(DataAccessException.class) 
 	public String dataAccessExceptionHandler(DataAccessException e, Model model) { 
 		
@@ -99,6 +100,7 @@ public class SignupController {
 	} 
 		
 	/** その他の例外処理 */ 
+	/** Exceptionにて作成していない例外が発生した際の処理を実装する */
 	@ExceptionHandler(Exception.class) 
 	public String exceptionHandler(Exception e, Model model) { 
 		
