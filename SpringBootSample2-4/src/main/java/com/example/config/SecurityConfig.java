@@ -13,11 +13,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+/** セキュリティ設定の変更を行えるようになる */
 @EnableWebSecurity 
 @Configuration 
 public class SecurityConfig extends WebSecurityConfigurerAdapter { 
 	
 	@Autowired
+	/** UserDetailsServiceクラスを定義する */
 	private UserDetailsService userDetailsService;
 	
 	@Bean 
@@ -48,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/user/signup")
 			.permitAll() 
 			//直リンクOK 
+			//ログインユーザが管理者以外の遷移を制限する
 			.antMatchers("/admin").hasAuthority("ROLE_ADMIN") // 権限制御
 			.anyRequest()
 			.authenticated(); 
@@ -66,8 +69,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// ログアウト処理 
 		http 
 			.logout() 
+			//ログアウトのリクエストをgetで行う際に記載する
 			.logoutRequestMatcher(new AntPathRequestMatcher("/logout")) 
+				//header.htmlのactionタグのlogoutと連携してログアウト処理が呼び出される
 				.logoutUrl("/logout") 
+				//ログアウト成功時の遷移先を設定する
 				.logoutSuccessUrl("/login?logout");
 		
 			// CSRF対策を無効に設定（一時的） 
@@ -75,9 +81,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	/** 認証の設定 */ 
+	/** パスワードの暗号化クラスを実装する */
 	@Override 
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception { 
 		
+		/** PasswordEncoderクラスの呼び出しを定義する */
 		PasswordEncoder encoder = passwordEncoder();
 		
 		// インメモリ認証 
@@ -85,10 +93,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth 
 			.inMemoryAuthentication() 
 				.withUser("user") // userを追加 
+				//一般ユーザのパスワードを暗号化する
 				.password(encoder.encode("user")) 
 				.roles("GENERAL") 
 			.and() 
 			.withUser("admin") // adminを追加 
+				//管理者ユーザのパスワードを暗号化する
 				.password(encoder.encode("admin")) 
 				.roles("ADMIN"); 
 		*/ 

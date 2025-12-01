@@ -1,4 +1,5 @@
 <!DOCTYPE html> 
+<!-- sec:authorizeを使用できるようになる -->
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> 
 <head> 
 </head> 
@@ -8,7 +9,9 @@
 			<li role="presentation"> 
 				<a class="nav-link" th:href="@{'/user/list'}">ユーザ一覧</a> 
 			</li> 
+			<!-- m_userのmoleカラムがROLE_ADMINの場合リンクを表示する -->
 			<li role="presentation" sec:authorize="hasRole('ADMIN')">
+				<!-- 管理者専用のリンクを作成する -->
 				<a class="nav-link" th:href="@{'/admin'}">アドミン専用</a> 
 			</li>
 		</ul> 
