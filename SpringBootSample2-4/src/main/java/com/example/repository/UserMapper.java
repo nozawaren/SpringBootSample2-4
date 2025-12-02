@@ -36,5 +36,6 @@ public interface UserMapper {
 	public int deleteOne(@Param("userId") String userId);
 	
 	/** ログインユーザー取得 */ 
+	/** UserMapper.xmlのfindLoginUserを引数userIdで実行し結果をMUser型で受け取る呼び出しを定義する */
 	public MUser findLoginUser(String userId);
 }

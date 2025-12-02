@@ -17,9 +17,12 @@ import com.example.domain.user.service.UserService;
 public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	@Autowired 
+	//userDetailsServiceの実行を定義する
 	private UserService service; 
 	
-	@Override public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException { 
+	@Override 
+	//返却値がUserDetails型でエラー時にUsernameNotFoundExceptionを返すクラスを作成する
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException { 
 		// ユーザー情報取得 
 		MUser loginUser = service.getLoginUser(username); 
 		

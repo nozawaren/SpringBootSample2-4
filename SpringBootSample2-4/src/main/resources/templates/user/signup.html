@@ -77,6 +77,8 @@
 		<!-- 登録ボタン --> 
 		<!-- messages.propertiesに記載されているuser.signup.btnの内容を表示する -->
 		<input type="submit" th:value="#{user.signup.btn}" class="btn btn-primary w-100 mt-3" /> 
+		<!-- クロスサイトスクリプティング対策により正しいリクエストが送信されたかを判断する -->
+		<!-- 不正なリクエストが発生した場合403エラーが発生する -->
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 	</form> 
 </body> 

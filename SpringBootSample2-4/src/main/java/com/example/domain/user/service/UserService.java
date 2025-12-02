@@ -26,6 +26,7 @@ public interface UserService {
 	public void deleteUserOne(String userId);
 	
 	/** ログインユーザー情報取得 */ 
+	/** getLoginUserクラスを定義する */
 	public MUser getLoginUser(String userId);
 
 }

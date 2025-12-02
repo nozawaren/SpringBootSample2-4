@@ -115,6 +115,7 @@
 			<artifactId>aspectjweaver</artifactId> 
 		</dependency>
 		<!-- SpringSecurity --> 
+		<!-- Securityを使用したコードを使用できるようになる -->
 		<dependency> 
 			<groupId>org.springframework.boot</groupId> 
 			<artifactId>spring-boot-starter-security</artifactId> 

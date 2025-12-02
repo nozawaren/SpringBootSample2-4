@@ -130,6 +130,7 @@
 		user_id = #{userId} 
 </delete>
 <!-- ログインユーザー情報取得 --> 
+<!-- UserMapper.javaからidのfindLoginUserと連携してm_userテーブルから引数のuserIdとuser_idが同じレコードを全件取得する -->
 <select id="findLoginUser" resultType="MUser"> 
 	select 
 		* 

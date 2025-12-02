@@ -17,6 +17,7 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserMapper mapper;
 
+	/** PasswordEncoderクラスを定義する */
 	@Autowired 
 	private PasswordEncoder encoder;
 	
@@ -26,7 +27,9 @@ public class UserServiceImpl implements UserService{
 		user.setDepartmentId(1);//部署
 		user.setRole("ROLE_GENERAL");//ロール
 		// パスワード暗号化 
+		/** パスワードを取得する */
 		String rawPassword = user.getPassword(); 
+		/** パスワードを暗号化しuserにセットする */
 		user.setPassword(encoder.encode(rawPassword));
 		
 		mapper.insertOne(user);
@@ -70,6 +73,7 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	/** ログインユーザー情報取得 */ 
+	/** UserService.javaのgetLoginUserをオーバーライドして内部処理にUserMapper.javaのfindLoginUserを実行する */
 	@Override 
 	public MUser getLoginUser(String userId) { 
 		return mapper.findLoginUser(userId); 
